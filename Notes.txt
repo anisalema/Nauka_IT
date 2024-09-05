@@ -305,6 +305,16 @@ git clone url
 - Push Up zmiany do Githuba
 
 Jak się kliknie na profil to jest dodaj repo
+
+Tylko ta branch, na której jesteśmy podczas klonowania zostanie pobrana.
+Reszta branches będzie remote.
+Można je zobaczyć po wpisaniu git branch -r
+Można je też podejrzeć przez git checkout remote/branch
+git switch puppies
+- git odrazu połączy z remote branch (po tej samiej nazwie)
+    kiedyś: git checkout --track remote/branch
+    - ale już się nie korzysta
+
 ===============
     Remote
 ===============
@@ -334,3 +344,46 @@ git push -u remote branch / git push --set-upstream remote branch
 - sets the upstream of the local master branch so that it tracks the master branch on the origianl repo
 - wtedy można używać tylko git push i git będzie wiedział domyślnie że lokalna branch i branch na githubie są jednym
 - można zrobić kombo łącząc poprzedni kod: git push -u remote branch_local:branch_github
+
+Remote Tracking Branch - reference to the master branch on the remote. Nie da się przenieść.
+- jest w miejscu na ostatnim commicie origina master
+<remote>/<branch> np. origin/master
+git branch -r
+- pokaże remote branches
+W git status pokaże nam komunikat ile commitów jesteśmy do przodu od remote.
+
+git checkout remote/branch np. git checkout origin/master
+- jeśli chcemy zobaczyć jak wyglądalo repozytorium kiedy sklonowaliśmy / ostatnio komunikowaliśmy się z github
+
+
+=====================
+    Git Fetching
+=====================
+Umożliwia pobranie zmian, które zaszły w remote repo ale nie zostaną one automatycznie zintegrowane z plikami.
+Pozwala na zobaczenie nad czym pracowali inni ale bez obowiązku mergowania z własnymi lokalnymi plikami.
+Fetchiing to z remote repo do local repo.
+git fetch remote
+- np. git fetch origin
+git fetch remote branch
+- pobranie danej gałęzi
+
+====================
+    Git Pulling
+====================
+Pulling to remote repo do workplace.
+Sposób na dodanie zmian z remote repo ALE to odrazu aktualizuje HEAD branch poprzez dodanie zmian z remote.
+git pull = git fetch + git merge
+git pull remote Branch
+- ważne skąd / z jakiej lokalizacji będzie wpisana ta komenda. Tam dodane będą zmiany.
+Pull może być zakończony merge konfliktem.
+Najpierw pull up a później push up (jeśli chcemy dodać do github)
+git pull
+- z default będzie origin i branch która jest powiązana
+
+
+
+
+
+
+
+
