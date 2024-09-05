@@ -1,0 +1,327 @@
+Tutaj notatki z git
+
+====================================================================
+git-scm.com/docs
+- można kliknąć komendy i dowiedzieć się o nich sporo
+- jak czegoś nie wiesz to szukać tutaj
+====================================================================
+
+==================================
+        Terminal Crash Course:
+==================================
+    Poruszanie się: 
+/s - lista możliwych działań\
+ls - list contest of the folder
+- pokaże co jest w folderze
+ls -a 
+- pokaże ukryte pliki (napisane zaczynają się kropką)
+start . 
+- otworzy lokacje pliku w oknie
+ls NazwaFolderu 
+- powie co zawiera dany folder
+open NazwaFolderu
+- otworzy folder
+ls NazwaFolderu/NazwaFolderu2
+- powie co zawiera folder, który jest w innym folderze
+pwd (print working directory)
+- powie gdzie teraz jesteśmy (jaka jest nasza lokacja)
+cd NazwaFolderu (change directory)
+- zmienia lokację, w której jesteśmy na inną (podaną)
+clear - czyści ekran komend
+cd .. 
+- wracamy do poprzedniej lokacji
+    Tworzenie, modefikowanie plików i folderów:
+touch file.rozrzeszenie w lokacji w jakiej jesteśmy
+- tworzy nowy plik np. touch file.txt; można napisać ich kilka bez przecinków 
+  pomiędzy i tworzyć wiele na raz; można też tworzyć w lokacjach przez podanie 
+  ścieżki np. touch Folder1/Folder2/plik.rozszerzenie
+ mkdir NowyFolder (make directory)
+ - utworzy nowy folder w lokacji w jakiej jesteś
+    Usuwanie folderów i plików:
+rm plik.rozszerzenie (remove)
+- usuwa plik ale nie do kosza a całkowicie; można kilka po sobie napisać i 
+  usunie na raz
+rm -rf NazwaFolderu
+- usuwa foldery całkowicie a nie do kosza
+
+=================
+    Repo
+=================
+    Basics:
+Repository (Repo) - taka jakby ścieżka (folder), którego modyfikacje śledzimy
+
+git status
+- daje status repo
+git init
+- tworzy nowe repo; działanie jedno na cały projekt (wszystkie podfoldery są w repo)
+!!! Nie twórz nowego repo w innym repo
+!!! sprawdź status i się upewnij
+
+    Committing:
+Committing - czyli checkpoint w repo
+- można kilka zmienionych plików zaznaczyć jako jeden commit albo podzielić je na kilka 
+1. Najpierw trzeba stworzyć pliki i je modyfikować (w statusie pokaże nieśledzone je)
+- to jest w working directory
+2. Trzeba dać pliki, które chcemy dać do Stage Area 
+3. A później zrobić z nich comit
+git add NazwaPliku NazwaPliku2 
+- stage changes, które później będą comitted; można ile się plików chce (między krokiem 1 a 2)
+git commit
+- wymaga informacji co się stało (jakaś wiadomość); strzeszczenie co się stało
+- uruchomienie git commit sprawi, że wszystkie pliki, które są w stage area będą commited
+git commit -m "wiadomość"
+- wiadomość odrazu i nie otwiera edytora
+
+!!!!!!!!!
+git commit -a -m "wiadomość"
+- doda wszystkie zmiany odrazu 
+!!!!!!!!!
+
+working tree clean - wszystko jest in sync i up to date
+
+git log
+- daje informacje o commitach
+git add .
+-stage wszystkie zmiany na raz
+
+    Attomic Commits:
+Każdy commit powinien odnosić się do jednej rzeczy (jednego problemu)
+
+Można wyszukać słowo (lupa w Visual Studio Code) i zamienić je na inne w każdym z plików gdzie występuje
+
+Zaleca się pisanie wiadomości commitów w czasie Present Simple
+
+    Formating Commits:
+Jakby otworzył się VIM to klikając i przenosimy się do instert mode
+klikając esc wychodzimy z niego
+wpisanie :wq wychodzi z pliku i zapisuje zmiany
+Żeby zmienić na Visual Studio Code to: git config --global core.editor "code --wait"
+W Visual Studio trzeba wyszukać (CTRL+SHIFT+P) >code i kliknąć Install 'code' command
+
+git log --oneline
+short for:: --pretty+oneline --abbrev commit
+każda linijka logów będzie krótsza 
+
+git add zapomniany_plik.rozszerzenie
+- stage file
+git commit __amend
+- doda plik do ostatniego commitu / zmienia wiadomość commitu 
+
+touch .gitignore 
+- tworzy plik wewnątrz którego można wskazać pliki i foldery, które ma ignorować:
+    .Nazwa_Pliku - do plików
+    folderName/ - do folderów
+    *.log - do logów
+- zaznaczanie plików, którymi nigdy nie chcemy się dzielić
+Jest baza online nazw plików, które warto dodać https://www.toptal.com/developers/gitignore/
+
+    Git with GUI:
+Można otworzyć tam, stage pliki i commitować je.
+
+HEAD -> Master
+- head to obecna lokacja (to na co wskazuje strzałka to, na którą gałęź pokazuje)
+- co jest obecnie otwarte w repozydorium / gdzie jest obenca gałęź
+
+=================
+    Branch
+=================
+Umożliwiają tworzenie oddzielnych gałęzi (nie wpływają na inne gałęzie projektu; dużo osób może na raz pracować).
+- Master branch (główna gałęź repo)
+    - Master w Git a Main w Github - to samo
+    - Często jest to główna gałęź projektu (ale nie musi być)
+- Feature Branches (to inne gałęzie osobne)
+!!! hash - unique (to be continued)
+
+To gdzie tworzymy nową branch jest ważne bo będzie ona zawierać wszystko dotychczas
+git branch
+- pokazuje jakie mamy branches
+- by wyjść z listy klikamy q
+- tam gdzie jest * jesteśmy obecnie
+git branch branch-name
+- tworzy nowy branch (ale na nią nie przechodzimy lokalizacyjnie)
+git switch branch-name
+- zmieniamy branch, której używamy
+git switch -c brnach-name
+-tworzy i przenosi nas odrazu na branch
+git chechkout branch-name
+- to samo co switch + odzyskanie working-files
+!!! Commit changes zanim zmienisz gałąź !!!
+git branch -D branch-name
+- usunie branch nieważne czy jest marged czy nie
+- trzeba nie być na tej branch a na innej
+git  branch -m branch-name
+- zmieni nazwę
+- trzeba być na tej branch
+git branch -v
+- pokazuje więcej info o branches
+
+        Wizualizacja przez GUI
+
+        Merging Branches
+We merge branches a nie commits
+We always merge to the current HEAD branch
+    Fast Forward Marge
+To używa się jeśli jedna z branches zawiera wszystko co druga i więcej
+1. Najpierw idziemy na branch, do którego chcemy dodać inny branch
+git switch branch-name
+2. git merge branch-name (ale tutaj już nazwa tej branch, którą chcemy dodać)
+To tak jakby jest, że ta branch do której dodajemy inny branch przeskakuje chaptery
+i już jest gdzie indziej. Robi taki jakby catch-up
+    Merge Commit
+Ten sam proces ale otworzy inne okno z commitem gdzie można dać nazwę.
+    Merge Conflict
+1. Kiedy chcemy zrobić jak wyżej ale wyskakuje błąd git powie jakie pliki to problem
+2. Otwieramy problemowe pliki
+3. Edytujemy pliki by rozwiązać konflikt. Decydujemy co z jakiej branch zostawiamy albo całość.
+4. Usuwamy zaznaczenia (markers) z pliku
+5. Zapisujemy zmiany a później robimy !commit!
+
+=================
+    Git Diff
+=================
+Pokaże co się zmieniło między commitami, branchami, plikami itd.
+git diff
+- pokazuje wszystkie zmiany przed stage (tylko unstage pokaże)
+- ucieka się przed q
+git diff HEAD
+- wszystkie zmiany od ostatniego commitu (staged i unstaged)
+git diff --staged / git diff --cached
+- pokażą tylko staged zmiany (między zmianami a commitem ostatnim)
+git diff HEAD nazwa_pliku
+- pokaże zmiany do specyficznego pliku
+- możliwe, że będzie potrzebne dodanie lokalizacji folder/nazwa_pliku
+git diff --staged nazwa_pliku
+- pokaże tylko staged zmiany do specyficznego pliku
+- możliwe, że będzie potrzebne dodanie lokalizacji folder/nazwa_pliku
+git diff branch1..branch2
+- porównanie zmian dwóch branch
+- kolejność jest ważna bo od tego będzie zależeć co będzie plikiem a i b
+git diff commit1..commit2
+- co się zmieniło między commitami
+-> git log --oneline (by zobaczyć commity)
+-> musimy spisać hashe (numery id commitów) commitów, które chcemy porównać
+- kolejność się liczy
+
+
+    Wytłumaczenie kodu, który wyskoczy:
+diff --git ...
+- pokaże , które pliki porównuje (jeden to plik "a" a drugi plik "b")
+--- / +++
+- pokaże gdzie jest coś dodane a gdzie usunięte
+@@ -3,4 +3,5 @@
+- chunks
+- pierwsza para numerów jest do pliku a, druga do pliku b
+- miusy i plusy pokazują odnoszą się do --- / +++
+
+=================
+    Git Stash
+=================
+index to staging area (Nazewnictwo)
+Jeśli zmieniamy branche ale nie zrobimy commita to zmiany mogą pójść z nami albo zrobić stash.
+Umożliwa odłożenie zmian na jednej gałęzi i możliwe wrócenie do nich bez niepotrzebnego commita
+git stash / git stash save
+- wszystkie uncommited zmiany zostaną zapisane w stashu
+git stash pop
+- doda ostatnio zapisane zmiany, które są w stashu tam gdzie aktualnie jesteś (nawt jeśli to inna branch)
+git stash apply
+- to tak, że zmiany pojawiają się w pliku a jednocześnie są w stashu przechowywane
+- takie duplikowanie trochę ich bo są w dwóch miejscach
+Można mieć dużo stashów na raz. Będą one pojawiać się od najstarszego
+git stash list
+- pokazuje co mamy w stashu
+git stash apply stash@{numer_stasha}
+- można wybrać dany stash, który chcemy dodać
+git stash drop stash@{numer_stasha}
+- usuwa podany stash z schowka stashów
+git stash clear
+- czyści cały schowek stashów
+
+=================
+    Other
+=================
+    git checkout i git switch
+- tworzenie nowych branch
+- przechodzenie na inne branche
+- odzyskiwanie plików
+- undo history
+git checkout commit_hash 
+- hash uzyskujemy dzięki git log --oneline (wystarczy pierwsze 7 cyfr)
+- przeniesie nas do stanu detached HEAD 
+- idziemy w czasie do poprzedniego commitu (bez późniejszych po nim)
+git switch nazwa_branchu
+- wracamy do punktu wyjścia
+git checkout HEAD~liczba_ile_chcemy_wrócić
+- np. git checkout HEAD~1 (wracamy o 1 commit)
+git switch -
+- przeniesie do ostatniego miejsca, na jakim się znajdowaliśmy
+git checkout HEAD nazwa_pliku / git checkout -- nazwa_pliku
+- usuwa wszystkie zmiany w pliku i wraca do ostatniego zapisania
+git restore nazwa_pliku
+- to samo co wyżej; wraca do poprzedniego zapisu
+git restore --source HEAD~cyfra nazwa_pliku
+- source można wyznaczyć branch (a jak nie to domyślnie tam gdzie jesteś), HEAD~1 albo hash 
+git restore --staged nazwa_pliku
+- unstage plik
+git reset commit_hash
+- usuwa commity aż do podanego hasha (ale nie usuwa zmian)
+- można stworzyć nowy branch i tam je zapisać
+git reset --hard commit_hash
+- usunie commity aż do podanego hasha i wszystkie związane z nimi zmiany
+git revert commit_hash
+- towrzy nowy commit który undos zmiany z innego commitu
+- trzeba będzie wpisać wiadomość
+- POWINNO się używać tego kiedy pracuje się z innymi na jednym pliku!!!!
+- czasami może być konfliky i robimy tak jak w merge
+
+================================================================================================
+================================================================================================
+    ~~~ GITHUB ~~~~~
+=======================
+Można dodać tam swoje repo i udostępniać innym i pracować z innymi oraz mieć do niego dostęp z różnych miejsc
+Są inne narzędzia niż GitHub takie jak GitLab, BitBucket czy Gerrit
+Github to DOM dla Open Source Projects
+Konfiguracja SSH Keys (Secure SHell) -> Instrukcje na GitHub
+===================
+    Cloning
+===================
+Kopiowanie istniejącego repo
+git clone url
+- nie można być w istenijącym repo kiedy się to robi (git status)
+- utworzy nowy folder z pobranymi plikami
+- jeśli plik jest na Githubie to można pobrać repo
+- nie trzeba brać url z Githuba można z innych źródeł
+=====================================
+    Dodawanie Repo do Githuba
+=====================================
+1 Opcja. Istniejące Repo:
+- Utwórz nowe repo na Github
+- Połącz ze swoim lokalnym repo
+- Push up zmiany do Githuba
+2 Opcja. Nowe Repo
+- Stwórz nowe repo na Github
+- Sklonuj je na swoje urządzenie
+- Zrób pracę lokalnie
+- Push Up zmiany do Githuba
+
+Jak się kliknie na profil to jest dodaj repo
+===============
+    Remote
+===============
+Żeby zrobić Push Up repo trzeba utworzyć destynację do której ma być dodane. Ta destynacja to Remote
+git remote -v
+- pokaże ci wszystkie repo
+git remote add nazwa url
+- dodanie nowego remote
+- zazwyczaj nazwa to origin
+- na stronie Github w nowym repo są linie kodu do skopiowania
+git remote rename stara_nazwa nowa_nazwa
+- zmienia nazwe
+git remote remove nazwa
+- usuwa
+    PUSH UP
+git push remote branch
+- remote (np origin)
+- wstawiamy dany branch 
+- np. git push origin master (github zmienił master na main więc można zmienić master na main wpisując: git branch -M main)
+- jak doda się kilka branches to można między nimi przeskakwiać
+
