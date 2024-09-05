@@ -380,7 +380,19 @@ Najpierw pull up a później push up (jeśli chcemy dodać do github)
 git pull
 - z default będzie origin i branch która jest powiązana
 
+============
+    Inne
+============
+Public repo - każdy widzi i ma dostęp ale nie może pushować
+Private repo - tylko collaboratorzy i właściciel
 
+!!! Dodawanie COLLABORATORÓW !!!
+- mogą pushować zmiany w Repo
+1. Wchodzimy w repo na github
+2. W ustawienia
+3. Manage acces
+4. Dodawanie przez username
+5. Osoba musi dołączyć i potwierdzić zaproszenie
 
 
 
