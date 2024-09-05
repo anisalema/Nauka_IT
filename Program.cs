@@ -1,4 +1,4 @@
-
+﻿
 using System; //przestrzeń nazw
 using System.Collections.Specialized;
 using System.Linq.Expressions;
