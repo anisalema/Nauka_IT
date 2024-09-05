@@ -300,6 +300,7 @@ git clone url
 2 Opcja. Nowe Repo
 - Stwórz nowe repo na Github
 - Sklonuj je na swoje urządzenie
+    - kopiujemy url z githuba repo i wpisujemy kod git clone url
 - Zrób pracę lokalnie
 - Push Up zmiany do Githuba
 
@@ -318,10 +319,18 @@ git remote rename stara_nazwa nowa_nazwa
 - zmienia nazwe
 git remote remove nazwa
 - usuwa
+================
     PUSH UP
+================
 git push remote branch
 - remote (np origin)
 - wstawiamy dany branch 
 - np. git push origin master (github zmienił master na main więc można zmienić master na main wpisując: git branch -M main)
 - jak doda się kilka branches to można między nimi przeskakwiać
-
+git push remote local-branch:remote-branch
+- np. git push origin pieski:main
+- weźmie branch o nazwie pieski jaką mamy w systemie i doda ją do branch main na github
+git push -u remote branch / git push --set-upstream remote branch 
+- sets the upstream of the local master branch so that it tracks the master branch on the origianl repo
+- wtedy można używać tylko git push i git będzie wiedział domyślnie że lokalna branch i branch na githubie są jednym
+- można zrobić kombo łącząc poprzedni kod: git push -u remote branch_local:branch_github
