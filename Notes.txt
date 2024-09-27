@@ -394,8 +394,96 @@ Private repo - tylko collaboratorzy i właściciel
 4. Dodawanie przez username
 5. Osoba musi dołączyć i potwierdzić zaproszenie
 
+===============
+    README.md
+===============
+
+Wyjaśnia co robi projekt, dla kogo, jak instalować i inne info
+
+Plik w rozszerzeniu .md -> Markdown
+https://daringfireball.net/projects/markdown/
+-> Więcej info o Markdown plikach
+https://markdown-it.github.io/
+-> Przykładowe jak co robić
+-> Wszystko w tych linkach
+
+jak w studiocode >m (wyszukać) to można zobaczyć preview
+
+==============
+    Gists
+==============
+
+Części kodu, które mają mniej funkcji niż git
+Nie trzeba tworzyć nowego repo tylko po prostu dodać na stronę.
+Można je udostępniać, mogą mieć różne rozszerzenia itd
+
+Dodawanie: prawy górny róg strony kliknąć plus
 
 
+https://gist.github.com/discover
+-> strona githuba z gists
 
 
+=================
+    gh pages
+=================
+
+Github może być hostem stron internetowych ale tylko static sites
+Czyli tylko HTML/CSS/JS
+
+https://pages.github.com/
+
+User site 
+- jenda na jedno konto Github
+- tam można portfolio
+- default: username.github.io
+
+Project site:
+- nieskończona ilość
+- każde Github repo może mieć stronie
+- trzeba wskazać która gałąź pokazuje kontent na stronę
+- default: username.github.io/repo-name
+
+Jak zrobić:
+1. Najpierw stworzyć repozytorium
+2. Dodać tam pliki 
+3. Zmienić master na main 
+4. Jeśli mamy plik html to wtedy idziemy w ustawienia repo
+5. W sekcji GitHub Pages zaznaczamy, która branch
+
+================
+    Workflow
+================
+
+Centralized Workflow - Każdy pracuje na Master branch / jednej branch
+- dużo czasu trzeba spędzić by nie było problemów z mergingiem itd.
+- problematyczne
+- każdy pracuje i zaburza main kod
+
+Feature Branches - Nie pracuj na Master a na innych branches
+- master jako oficjalna branch
+-> Merging in Feature branches
+    Można robić na 3 sposoby:
+1. Każdy merguje kiedy chce
+2. Wszyscy kolaboratorzy mają dyskusję i uzgadniają co mergować a co nie
+3. PULL REQUEST
+
+============
+Pull Request -> zawiadamiają osoby pracujące nad repo że są zmiany, które muszą być sprawdzone
+============
+Oferują mechanizm, który umożliwia akceptowanie lub odrzucanie zmian na branchach.
+Na stronie githuba będzie widoczny napis: Comapre & pull Request albo samo pull Request
+Jak się je kliknie to można napisać o co się prosi itd.
+-> Jeśli jest konflikt to można kliknąć resolve conflicts na github lub kliknąć command line instructions
+    Poda nam wtedy dokładne linie kodu do wpisania
+
+=======================
+Branch Protection Rules
+=======================
+Ustawienia -> Branches -> Branch Protection Rules -> Utwórz Rule
+Tam można zaznaczyć require pull Request i create
+
+================
+    Forking
+================
 
