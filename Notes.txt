@@ -26,7 +26,7 @@ ls NazwaFolderu/NazwaFolderu2
 pwd (print working directory)
 - powie gdzie teraz jesteśmy (jaka jest nasza lokacja)
 cd NazwaFolderu (change directory)
-- zmienia lokację, w której jesteśmy na inną (podaną)
+- zmienia logikację, w której jesteśmy na inną (podaną)
 clear - czyści ekran komend
 cd .. 
 - wracamy do poprzedniej lokacji
@@ -487,3 +487,156 @@ Tam można zaznaczyć require pull Request i create
     Forking
 ================
 
+Fork - copy of the original repo
+
+Zamiast jednego repo każdy ma swoje repo + main repo (github workflow)
+
+Jest do tego przycisk (fork) obok repo na github
+
+Działa to tak: fork repo na swoje konto -> pobieramy je na swoje pc -> pracujemy na tym 
+                -> push repo na mój fork -> pull request do oryginalnego repo -> pull originalne zmienione
+                i od nowa 
+
+=================
+    Rebasing
+=================
+
+Rebasing to alternatywa mergingu albo używany jako cleanup 
+
+git switch branch_name
+git rebase master
+
+To przenosi całą branch na koniec (lastest commit) master branch 
+
+KIEDY NIE UŻYWAĆ rebase
+Nigdy nie kiedy commity zostały udostępnione innym.
+Kiedy commity są już pushed na github -> chyba że jesteśmy pewni że nikt z colaboratów nie używa tych commitów
+
+Jak działać z konfliktami: w kodzie będą równe rozwiązania i zależnie co będziemy chcieli zrobić to poda nam kod
+albo rozwiązać tak jak z mergingiem
+
+=======
+cleanup tool
+=======
+Rewrite history - cleanup tool
+git rebase -i HEAD~4
+to -i umożliwi nam edytowanie commitów, dodawanie pluków, usuwanie commitów itp.
+to co jest po ~ oznacza specyfikacje jak daleko chcemy zmieniać
+Nie rebase na master a na HEAD branch
+
+Komendy do clean up:
+pick - użycie commitu
+reword - zmiana wiadomości commitu
+edit - użycie commitu ale zatrzymanie poprawek
+fixup - użycie commitu ale złączenie go z poprzednim i usunięcie wiadomości commitu
+drop - remove commit
+i więcej, które będa zapisane w pliku
+
+=========== 
+    Tags
+===========
+Tagujemy miejsca jako ważne. Często oznacza się wersje: v1.4.4
+- lightweight tags - name/label danego commitu
+- annotated tags - przetrzymuje extra meta dane w tym dane twórcy i wiadomość
+
+Semanting Versioning czyli co oznacza v2.1.3
+Pierwsza cyfra - Major release - zmiany dodane nie działają z poprzednimi wersjami
+Druga cyfra - Minor release - nowe features ale nie trzeba nic zmieniać jako użytkownik
+Trzecia cyfra - Patch release - często bug vixes itd, ale żadnych zmian features itd.
+
+*w kodzie nie pisać tych <>
+
+git tag - pokaże wszytskie Tagi
+git tag -l "*beta*" - pokaże tagi, które zawierają w nazwie beta
+git chechout <tag> - da nas do dannego commitu (przeniesie w stan detached HEAD)
+git diff <tag> <tag2> - pokaże jakie zmiany między tagami/commitami
+git tag <tagname> - tworzenie tagu lightweight
+git tag -a <tagname> - tworzenie tagu annotated (otworzy notes tak jak w commitach)
+git tag <tagname> <commit_hash> - dodawanie tagu do danego commitu 
+git tag -f <tagname> - jak nie da się dodać bo np daliśmy do złego commitu ten tag
+git tag -d <tagname> - usuwa tag
+git push --tags - doda tagi do githuba bo git push ich automatycznie nie przesyła!!!!
+
+==============
+    config
+==============
+Config file dodaje dodatkowe rzeczy
+Znajduje sie w każdym repo
+
+Tutaj więcej info: https://git-scm.com/docs/git-config
+
+git config --local ... - doda lokalnie
+
+============
+    Refs
+============
+Refs folder zawiera plik na każdą branch w repo
+
+============
+    HEAD
+============
+pokazuje gdzie jest HEAD
+
+===============
+    Objects
+===============
+Zawiera wszystkie obiekty repo. Tutaj git ma backupy plików ird.
+Pliki są enrypted więc nie powiedzą za dużo
+
+HASHING FUNCTIONS - hashe (przy nazwach commitów)
+Hashe mają 40 znaków
+SHA-1 algorytm używa git
+Git daje nam klucze które umożliwiają dostęp do danych danych i one są w formacie SHA-1
+
+echo 'hello' | git hash-object --stdin - da nam to co w nawiasie ale jako hash
+git hash-object <file> - daje nam danych plik ale bez zawartości w hash
+git cat-file - pokazuje obiektygit cat-file -p master^{tree} - pokaże tree ostatnie na master
+
+https://git-scm.com/docs/git-hash-object
+
+4 Types of Git Objects:
+- Commit - zawiera dane z tree i informacje o tym jak doszło się do danego tree (parents itd), dane twórcy i wiadomości
+- tree - objekty, które używa się do przechowywania kontentu danej directory (dane reww zawiera wskaźniki odnoszące się do blobów i innych tree)
+- blob (binary large object) - typ obiektu który przechowuje kontent pliku w danym repo. Nie zawiera nazw plików 
+- annotated tag
+
+HASHING FUNCTIONS - hashe (przy nazwach commitów)
+Hashe mają 40 znaków
+SHA-1 algorytm używa git
+
+==============
+    Reflog - Cała sekcja 19 (mocno pominięta bo idk o co tu wgl i po co to wgl)
+==============
+Pokazuje kiedy nastąpiły zmiany w repo dotyczące (head etd)
+Są tylko lokalne i 90 dni są tylko w historii
+
+git reflog 
+git reflog show HEAD - pokaże nam historie danej branch gdzie jest HEAD
+https://git-scm.com/docs/git-reflog - więcej info
+
+name@{qualifier} - uzyskujemy dostęp do specyfinczych refs
+
+Możemy filtrować refs poprzez dodanie czasu w jakim był dany refs
+git reflog master@{one.week.ago}
+git checkout bugfix@{2.days.ago}
+git diff main@{0} main@{yesterday}
+
+git reset --hard master@{1}
+
+================
+    Alliases
+================
+Global Git Config 
+~/.gitconfig albo ~/.config/git/config
+Wszystkie zmiany zajdą w wszystkich repo
+
+Allias - własna komenda zamiast innej
+np. zamiast git status mieć git st
+to dodajemy do pliku globalnego configu:
+[alias]
+    st = status
+
+Przydatne linki:
+https://gist.github.com/mwhite/6887990
+https://www.udemy.com/course/git-and-github-bootcamp/?couponCode=KEEPLEARNING
+https://github.com/GitAlias/gitalias
