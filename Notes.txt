@@ -6,6 +6,8 @@
     HTML
 ============
 
+Utworzono pliki .HTML, które mają w sobie notatki i pokazują jak co działa.
+
 nazwapliku.html
 
 To są przykłady tagów <p>
