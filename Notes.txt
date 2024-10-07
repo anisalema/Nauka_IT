@@ -1,0 +1,51 @@
+==============================
+    Notatki z HTML i CSS 
+==============================
+
+============
+    HTML
+============
+
+nazwapliku.html
+
+To są przykłady tagów <p>
+
+Poniżej pierwszy będzie otwierający, później tekst i zamykający
+<p> ... </p> 
+
+<p> - paragraf
+
+<!DOCTYPE html> ]pokazuje jaki typ pliku
+<html lang="en"> ]lang to atrybut: język a en to angielski
+    <head>
+        <meta charset="UTF-8"> ] encoding on character set
+        <title>Document</title>
+    </head>
+    <body>
+]TUTAJ TEKST, KTÓRY WYŚWIETLI
+    </body>
+</html>
+
+========
+Headings
+<h1> <h2> <h3> <h4> <h5> <h6> czym większa liczba tym mniejszy tekst
+
+=====
+<br> - break (do dodawania przerw na stronie)
+
+======
+<!--   - tworzy komentarz (otwiera)
+-->    - zamyka komentarz 
+Zaznaczony fragment kodu + ctrl + /  - będzie komentarzem
+
+=======
+<strong> - pogrubia teskt w paragrafie 
+<i> - kursywa
+<blockquote> - tworzy oddzielny blok tekstu
+<hr> - tworzy linie 
+<div> - oddziela kontent w kodzie
+
+
+
+
+
