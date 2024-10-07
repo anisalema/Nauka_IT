@@ -45,7 +45,23 @@ Zaznaczony fragment kodu + ctrl + /  - będzie komentarzem
 <hr> - tworzy linie 
 <div> - oddziela kontent w kodzie
 
+======
+<img src="ścieżka">  - pokaże obraz
+jak dodamy width="" to zmienimy rozmiar jak nie dodamy height to skaluje automatycznie
+height=""
 
+=====
+<a>  - anchor tag 
+<a href="źródło"> - doda źródło
+jak dopiszemy jeszcze target="_blank" - użytkownik po kliknięciu otworzy nową kartę z linkiem
+jak w kod wpiszemy jeszcze kod z zdjęciem to kliknięcie zdjęcia nas przeniesie
 
+=====
+<table> - tabele
+<tr> - wiersz tabeli
+<td> - komórka tabeli
+<th> - heading
+<thead> - segreguje heading w jedność
+<tbody> - segreguje treść w jedność
 
 
