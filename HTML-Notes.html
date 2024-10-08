@@ -78,6 +78,56 @@
         </table>
 
         <hr>
+        
+        <form action="zbieracz.php" method="post">
+            <p>Name <!--Dzięki tej treści po lewo powiadamiamy co ma wpisać użytkownik-->
+                <!-- To doda miejsce na wpisanie tekstu a placeholder wyświetli treść w okienku-->
+                <input name="name" type="text" placeholder="Enter name">
+            </p>
+
+            <!-- Poniżej inna forma podpisania i wyświetlenia tekstu obok okienka -->
+            <label for="email">Email
+                <!-- To doda miejsce na podanie maila -->
+                <input name="email" type="email" placeholder="Enter email">
+            </label>
+
+            <p>Password
+                <!-- To doda miejsce na wpisanie hasła -->
+                <input name="password" type="password" placeholder="Enter password">
+            </p>
+
+            <p>
+                <!-- To doda miejsce na dodanie pliku -->
+                <input name="file" type="file">
+            </p>
+
+            <p>
+                <!-- To umożliwi przesłanie wpisanej treści -->
+                <input name="submit" type="submit">
+            </p>
+        </form>
+
+        <hr>
+
+        <!--Otwiera listę, która będzie jakby od kropek-->
+        <ul>
+            <h3>Przykład listy</h3> <!--Podpis listy-->
+            <!-- Pozwala na stworzenie itemu w liście -->
+            <li>Item 1 on the List</li>
+            <!--Poprzez dodanie <a> można zrobić z tego odnośnik (również ze zdj)-->
+            <li><a href="CaitVi.html" target="_blank">Item 2 on the List</a></li>
+            <!-- Można również dodawać zdjecia do list -->
+            <li><img width="100" src="IMG/grafika.jpg"></li>
+        </ul>
+
+        <!-- Pozwala na zrobienie listy numerowanej -->
+        <ol>
+            <li>Item 1 on the List</li>
+            <li>Item 2 on the List</li>
+            <li>Item 3 on the List</li>
+        </ol>
+
+        <hr>
 
     </body>
 </html>
