@@ -256,12 +256,20 @@ style="color:red;font-size:medium"
 
 font-weight:bold - pogrubienie
 
+Jeśli chcemy ustawić styl tekstu na cały dokument to dajemy:
+<style> w sekcji <head>
+i używamy selektora przez napisanie p{}
+w srodku {} piszemy nasze wartości takie jako kolor etc.
 
+=================
+    EXTERNAL
 
+Nowy plik z demonstracją -> CSS-External Style
 
+żeby połączyć z zewnętrznym plikiem w rozszerzeniu .css
+<link rel="stylesheet" href="źródło">
 
-
-
+W samym pliku robimy to samo co internal ale nie dajemy
 
 
 

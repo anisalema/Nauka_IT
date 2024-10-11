@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>CSS Notes</title>
+
+    <!--To umożliwia ustawienie stylu tekstu na całość a nie tylko na linijke-->
+    <style>
+
+        /* To jest selektor, który umożliwia wyzanczenie co będzie się działo */
+        p{
+            color:green;
+            font-weight:bold;
+            font-size:24px;
+        }
+        
+    </style>
+
+
 </head>
 <body>
 
-    <!-- Ustawi kolor tekstu na czerwony, czcionkę na 24 piksele i pogrubi tekst,
-    ale tylko w danym paragrafie -->
+    <!--Ustawi kolor tekstu na czerwony (ale tylko tego tekstu w linijce),
+    czcionkę na 24 piksele i pogrubi tekst, ale tylko w danym paragrafie-->
     <p style="color:red;font-size:24px;font-weight:bold;" >
         Pierwszy tekst w kolorze.
     </p>
 
-
-
-
-
-
-
-
+    <p>A to tekst w kolorze ustawionym internally.</p>
 
 
 
