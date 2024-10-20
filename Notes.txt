@@ -244,6 +244,10 @@ Defines teletype text
     CSS
 ===========
 
+Komentowanie */ /*
+
+
+
 style="color:red" - zmieni tekst na czerwony (kolor ro może być też z #)
 
 Pod tym linkiem więcej kolorów i ich kodów w #
@@ -271,6 +275,23 @@ Nowy plik z demonstracją -> CSS-External Style
 
 W samym pliku robimy to samo co internal ale nie dajemy
 
+=============
+Żeby dawać do danych paragrafów i innych takich linijek tekstu styl
+Używa się selectorów. Można klas albo ID.
 
+ID:
+Zaczyna się w css od # 
+id="nazwa"
+Na jeden specyficzny item
 
+Klasa
+Zaczyna się od .
+class="nazwa"
+Na grupy specyficznych itemów
 
+======
+Dodawanie JavaScript
+
+<scrpit> - cokoliwek pomiędzy mówi plikowi html że to JavaScript
+
+<script src="JavaScript/file.js"></script> - tak łączy się ścieszkę z plikiem

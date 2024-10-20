@@ -1,5 +1,19 @@
+
+/* to daje do każdego paragrafu: 
+Gdybyśmy dodali po przecinku po p h1
+to da też do wszystkich h1 */
 p{
     color:green;
     font-weight:bold;
     font-size:24px;
+}
+
+/* Tutaj dajemy ID paragrafu i jego styl */
+#p-1 {
+    color:violet
+}
+
+/* A tak oznacza się i dodaje styl do klasy */
+.p-1c {
+    color:aquamarine
 }
