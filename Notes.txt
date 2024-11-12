@@ -1,3 +1,208 @@
 ======
 Linux
 ======
+
+Why Linux?
+1. More control over the machine
+2. It's faster
+3. It's available everywhere
+4. It's a requirement
+5. Needed for cloud computing
+
+Linux is a Unix-Like Descendant
+Terminal -> Shell -> OS
+
+Bash - default shell program on most Linux-based system
+
+man (manual) pages
+man other_command - shows what this command is
+q to quit from this view
+if u want to see in page view hold space while using arrows
+b for back
+f for forward
+h shows all Commands
+/ - searches phrase
+things in [] are optional
+man man - explains man
+
+Commands: (capital sensitive - upper and lower letters matter)
+command - options arguments
+options: -u (capital sensitive; can use many -x -y -z or -xyz)
+    - long form options: --universal
+
+type command - tells a type of a command 
+which command - where the command is located
+
+help command 
+
+Clear - clears Terminal
+
+date - shows date
+- u / --universal - utc time   
+
+ncal - shows calendar (new calendar)
+if not available: sudo apt install ncal
+- ncal 1986, ncal jun 2025
+cal - kalendarz
+-h option - turn off highlighting todays date
+-j - julian days
+-M - Monday as first day
+-3 - display previous, current and next month
+-A 1 / -A1 - shows current month and one month after (1 can be changed to other number to show more months)
+-B 1 / -B1 - shows current month and one previous month (1 can be changed to other number to show more months)
+
+echo - prints whatever is after it
+
+rm - remove
+
+==========
+Navigation
+==========
+ 
+Root Directory = /
+! root is not / !
+
+xdg-open / - opens graphic way to open the directiory
+
+Home Directory - ~ - every user has its direcotry in there
+
+pwd - where u r
+
+ls - lists files
+list /home/user - ls of the Directory
+ls -l - long format for Directory
+ls -a - all files in the folder (as well as hiden one [start with .])
+
+cd - change Directory
+cd .. - goes back
+
+Absolute path - starts with / - allows to cd from anywhere
+
+======
+Create
+======
+
+touch filename - creates file (if u add .jpg than its jpg file)
+touch ../filename - creates file in one back level
+
+file filename - explains file type
+
+xdg-open filename - opens file with default app
+
+mkdir <foldername> - creates folder
+
+====
+Nano 
+====
+Text editor that can be used from comand line
+
+nano FILE - opens file in Nano (and if it doesn't exist, it will create one)
+O - saves changes
+ctrl + x - exit
+ctrl + s - save
+^ - Ctrl
+M - Esc  (Meta Key)
+ctrl + w - search + enter -> searches forward (case insensitive)
+    M-C - Case sensitive
+    M-B - Searches backward
+^\ - replace
+^T - spellcheck (disabled by defult)
+    - sudo nano /etc/nanorc - configuration file where we can turn on spellchecking
+        - sudo allows you to access files to which you do not have access to
+
+=============
+Delete/Rename
+=============
+
+rm filename - remove
+rm -d - remove empty directories
+rmdir - deletes empty directory
+rm -r - remove directory and everything inside 
+rm -i - ask if you really want to delete
+    rm -ir - good combo
+
+mv source destination - moves file (can move many)
+    mv file folder
+    mv Chickens/ Dogs/ (moves folder)
+mv file1 file2 - renames file (in the same directory)
+    mv Folder1/ Folder 2/ (in the same directory)
+
+cp source destination - copy
+cp source directory -r - copies directories
+
+=========
+Shortcuts
+=========
+ctrl+l - clear
+ctrl-a - skips to the beggining of the line
+ctrl-e - skips to the end of the line
+ctrl-f - skips one forward
+ctrl-b - skips one backward
+alt-f - skips one word forward
+alt-b - skips one word backward
+ctrl-t - swaps characters with the one before it
+alt-t - swaps words with the one before it
+ctrl-k - kill the text from the cursor till the end of the line
+ctrl-u - kills the text from before the cursor 
+alt-d - kills from the cursor till the end of the word
+ctrl-w / alt-delete - kill text from cursor through the beggining of the word
+ctrl-y - retrieve what we killed
+
+history
+history | less
+! number - runs the command from history
+ctrl-r - reverse search
+    ctrl-r love - searches 'love'
+
+==================
+Workind with files
+==================
+cat filename - prints what is inside the file
+cat file1 file2 - prints both 
+
+tac filename - cat but in reverse (from bottom to top)
+
+rev filename - left to right reverse
+
+less filename - displays file but in pages
+
+head filename - prints first 10 lines of file
+head -n 5 / head -5 - prints first 5 lines
+
+tail filename - prints last 10 lines of the file
+tail -n 5 / head -5 - prints last 5 lines
+
+wc - word count 
+wc -l - the number of lines
+wc -w - the number of words in file
+wc -m - the number of characters
+
+sort - prints out sorted content from file
+-r / --reverse - shows data in reverse
+-u / --unique - shows only unique data
+-ru / --reverse --unique
+-n - numerical value
+sort filename -nk 2 - sorts by column 2 (columns divided by space)
+    -for example: 
+            pencil 0.50 32
+            flowers 3.2 8
+            rubber 0.9 85
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
