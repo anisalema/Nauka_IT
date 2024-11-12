@@ -1,0 +1,133 @@
+AWS 
+=============================
+Creating IAM Users and Groups
+=============================
+1. Open IAM on AWS
+2. Open User Group
+3. Create Group
+4. Attach permissions policies
+    - for admins: AministratorAccess
+5. Create Group
+6. Open User
+7. Create User
+    - Clicking "Provide user access to the AWS Managment Console"
+    means that you'll be able to log into the Managment Console
+        - Click I want to create an IAM user
+        - Click Custom password
+        - Unclick "User must create password at next sign-in"
+    - Click next
+8. Add user to group (previously made)
+9. Create User
+10. Copy Cobsole sign-in URL (easier log in)
+
+===================
+Switching IAM Roles
+===================
+1. Open IAM 
+2. Create User (like said previously) but don't add any permissions
+3. (Open IAM) Click on Roles
+4. Create a Role
+5. Check AWS account option and This account option
+6. Search for the permission you need
+7. Click on the Role
+Copy the link to switching roles in Console
+8. Go to the user profile where u want to switch the role
+9. Top right corner click on account
+10a. Click switch roles (manuall option)
+10b. Paste the link (auto option)
+- If it doesn't work nothing will happen
+XX. If user created without any permissions:
+1x. Copy:
+{
+    "Version": "2012-10-17",
+    "Statement": {
+        "Effect": "Allow",
+        "Action": "sts:AssumeRole",
+        "Resource": "arn:aws:iam:account-id:role/Test*"
+    }
+}
+2x. Go to the Roles -> open wanted role -> copy ARN
+3x. Paste it in the code above where it says "Resource"
+4x. Copy code
+5x. Open Users -> go to the user -> click permissions
+-> click add permissions -> create inline policy -> choose JSON
+-> delete all code -> paste your code -> create policy
+6x. Try again
+
+===================
+IAM Identity Center
+===================
+
+COME BACK AND CREATE NOTES
+
+==================================
+Amazon Elastic Compute Cloud (EC2)
+==================================
+
+EC2 hosts are managed by AWS.
+EC2 Host Server consists of many EC2 Instances
+An EC2 instance is a virtual server 
+A selection of instance types come with varying combinations
+of CPU, memory, storage and networking
+EC2 instances run Windows, Linux or MacOS
+
+Public IP address:
+- Lost when the instance is stopped
+- Used in Public Subnets
+- No charge
+- Associated with a private IP address on the instance
+- Cannot be moved between instances
+Private IP address:
+- Retained when the instance is stopped
+- Used in Public and Private Subnets 
+Elastic IP address:
+- Static Public IP address
+- You are in charge if not used 
+- Associated with a private IP address on the instance 
+- Can be moved between insctances and Elastic Network Adapters
+
+==============================
+Launching Amazon EC2 Instances
+==============================
+
+1. Selecting Instance Type (defines the hardware profile and cost)
+- t2.micro
+    - Gerneral purpose
+    - vCPUs 1
+    - Memory (GiB) 1
+- c5n.large
+    - Compute optimized
+    - vCPUs 2
+    - Memory (GiB) 5.25
+- r5ad.large
+    - Memory optimized
+    - vCPUs 2
+    - Memory (GiB) 16
+- d2.xlarge
+    - Storage optimized
+    - vCPUs 4
+    - Memory (GiB) 30.5
+- g2.2.xlarge
+    - GPU insctances
+    - vCPUs 8
+    - Memory (GiB) 15
+
+2. Choosing Amazon Machine Image - AMI (defines configuration of the instance)
+    /EBS Snapshot - Backup of the EC2 Instance
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
