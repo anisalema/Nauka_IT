@@ -188,6 +188,61 @@ sort filename -nk 2 - sorts by column 2 (columns divided by space)
             flowers 3.2 8
             rubber 0.9 85
 
+================
+Standard Streams
+================
+Communication channels between computer program and its environment
+
+Standard Input - where a program or command gets its input information from.
+    - by default from keyboard, but could also be from file or 
+Standard Output - A place to which a programm or a command can send information
+Standard Error - A default error message
+
+Redirection - changes a standard
+1. Redirecting output :
+command > filename
+- overwrites a file 
+command >> filename 
+- adds content to a file and not overwrites it
+- echo words > file.txt - creates a text file with words in it
+2. Redirecting input:
+command < filename
+3. Combo
+command < filename > filename 
+command < filename >> filename
+4. Redirecting error
+command something_that_causes_error 2> filename
+command something_that_causes_error 2>> filename
+5. All together
+command filename filename > filename 2> errorfilename
+- does some commands and if there is an error saves logs in error file
+- 2>&1 - error to the same file as output
+- &> / &>> - both standard error and output to the same file like:
+    - command filename &> filename
+
+======
+Piping
+======
+Pipes are used to redirect a stream from one program to another.
+We can take the output of one command and redirect it to the input of another
+Pipe character: |
+command1 | command2 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
