@@ -32,7 +32,8 @@ mv terraform /usr/local/bin
 terraform version
 - single file
 
-HCL Basics: (added file local.tf) 
+=================================
+HCL Basics: (added file main.tf) 
 
 <block> <parameters> {
     key1 = value1
@@ -49,6 +50,27 @@ Writing terraform workflow consists of four steps:
 4. Apply changes with terraform apply command
 Running cat command will see if the file was created
 Running terraform show command will show us the congiguration
+
+terraform destroy - shows execution plan and destroys while confirmed
+
+=====================
+Terraform Providers:
+
+terraform innit - terraform downloads and installs plugins for Provider
+
+  File Name    |                       Purpose
+main.tf        | Main configuration file contatining resource definition
+varaibles.tf   | Contains variable declaration
+outputs.tf     | Contains outputs from Resources
+provider.tf    | Contains provider definition
+
+Created file variables.tf to support main.tf
+Notes on variables in that file with examples
+
+
+
+
+
 
 
 
