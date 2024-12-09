@@ -1,0 +1,42 @@
+Terraform Notes
+
+Infrastructure as Code (IAC) types:
+1. Configuration managment:
+- Ansible, Puppet, Saltstack
+- Designed to install and manage Software
+- Mainstains standard structure
+- Version control
+- Idempotent - run a code multiplate times and will only make changes to defined state
+2. Server Templating
+- Docker, Packer, Vagrant
+- Pre Installed Software and Dependencies
+- Virtual Machine or Docker Images
+- Immutable Infrastructure
+3. Provisioning Tools:
+- Terraform, CloudFormation
+- Deploy Immutable Infrastructure Resources
+- Srevers, Databases, Network Components etc.
+- Multiple Providers
+
+Terraform uses HashiCorp Configuration Language (HCL) - Declarative Language
+and in .tf file extention
+- Declarative
+- Resource - a file that terraform manages
+- A state is a blueprint for Infrastructure
+
+Instalation:
+- single binary
+wget https://releases.hashicorp.com/terraform/0.13.0/terraform_0.13.0_linux_amd64.zip
+uznip terraform_0.13.0_linux_amd64.zip
+mv terraform /usr/local/bin
+terraform version
+- single file
+
+
+
+
+
+
+
+
+
