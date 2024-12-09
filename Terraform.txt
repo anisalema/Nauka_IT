@@ -32,6 +32,23 @@ mv terraform /usr/local/bin
 terraform version
 - single file
 
+HCL Basics: (added file local.tf) 
+
+<block> <parameters> {
+    key1 = value1
+    key2 = value2
+}
+
+<block> - contains a set of arguments in a key value file format
+
+Writing terraform workflow consists of four steps:
+1. Write the configuration file
+2. Run the terraform init command
+3. Review the extention plan using the terraform plan command 
+(+ symbols mean this will be created)
+4. Apply changes with terraform apply command
+Running cat command will see if the file was created
+Running terraform show command will show us the congiguration
 
 
 
