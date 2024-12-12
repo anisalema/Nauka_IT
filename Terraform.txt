@@ -64,8 +64,109 @@ varaibles.tf   | Contains variable declaration
 outputs.tf     | Contains outputs from Resources
 provider.tf    | Contains provider definition
 
+
+INPUT VARIABLES
 Created file variables.tf to support main.tf
 Notes on variables in that file with examples
+
+If we do not provide a default version while using variables:
+1. and we run terraform apply command, we will be asked to enter a value
+or we can run: terraform apply -var "filename="~/pets.txt" -var "content=We love Pets!" etc.
+2. We can also run:
+export TF_VAR_filename="~/pets.txt"
+export TF_VAR_content="We love Pets!" (etc)
+terraform apply
+3. we can create terraform.tfvars files where the content would look like this:
+filename = "~/pets.txt"
+content = "We love Pets!"
+and then run terraform apply command
+!!!!This file can be called:
+name.tfvars | name.tfvars.json | file.auto.tfvars | name.auto.tfvars.json
+terraform apply -var-file name.tfvars
+
+The order of usage if multiple sources: (from first to last)
+export TF_VAR_filename=...
+terraform.tfvars
+variable.auto.tfvars
+terraform apply -var "filename=..."
+
+OUPUT VARIABLES
+output "<variable-name>" {
+    value = "<variable_value>"
+    <arguments>
+}
+terraform output - prints out all outputs from all files in the directory
+terraform output variable-name - prints just for this variable-name
+
+===============
+TERRAFORM STATE 
+===============
+
+terraform.tfstate (after ls in location)
+- appears after apply command 
+- it has record of a complete Infrastructure of terraform
+
+terraform state - command 
+
+terraform is a source of truth. It contains sensitive information
+
+Do not manualy edit this file.
+
+==================
+Terraform Commands
+==================
+
+terraform validate - shows if the syntax is correct
+
+terraform fmt - (format) command -> scans the files and formats them into canonical format
+- improves readability 
+
+terraform show - displays the current space of the resource
+
+terraform providers - shows all providers used
+
+terraform refresh - updates the state file. Modifies the state file
+
+terraform graph - renders dependencies between Resources
+- in DOT format, if run in software e.g. graphviz that generates graph
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================================================================
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+===================================================================
+
+
 
 
 
