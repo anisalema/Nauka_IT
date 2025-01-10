@@ -228,18 +228,69 @@ We can take the output of one command and redirect it to the input of another
 Pipe character: |
 command1 | command2 
 
+YOU CAN USE MANY PIPES command1 | command2 | command3 ...
 
+ls | less 
+example: ls -l /usr/bin | less
+- pipes out the output of ls to less 
 
+ls /usr/bin -l | wc -l 
+- will show word count (of lines -l) in usr/bin
 
+> vs | - redirecting vs piping 
+redirection means connects a command to some file
+piping connects command to another command 
 
+tr command - translate or delete characters
+for example: cat msg | tr s s
+- it will print out msg file but lower s will be printed as capital S 
+or other example: cat msg | tr a-z A-Z 
+- it will print a msg in capital letters
+or: cat msg | tr -d s 
+- it will delete all "s" letters in msg file while printed 
 
+tac | rev - changes file both horizontally and vertically
 
+command1 | tee file.txt | comman2 
+- fore example we have 3 files and want the data in them to be stored in one
+but at the same time we want to count words in the new file 
+cat file1 file2 | tee newFileName.txt | wc -w 
 
+==================
+    Expansions
+==================
 
+Wildcard Character (aka globbing patterns) - they can multiply filenames at once
 
+The (*) reprezents zero or more characters in a filename.
+For example:
+- ls *.html - will match any files that end with .html
+- cat blue* - will match any files that start with "blue"
+We can also do *word*
 
+The (?) reprezents exactly one character.
+For example:
+- ls app?.css - will show files like app3.css, appK.css etc.
 
+The ( [] ) allows to specify a range of characters to match
+For example:
+- ls pic[123].png - will only match pic1.png, pic2.png and pic3.png
+- ls file[0-0] - will match file1, file2 .. file9
+- ls [A-F]* - will match any files that beggin with capital A-F 
 
+The ( [^]) allows to specify a ramge of characters to NOT match 
+For example:
+- ls [^a]* - will match any files that do not start with "a"
+
+The (~) - will show home directory of the user or if we write a username 
+after it to this user's home directory
+
+The ( {} ) - used to generate arbitraty strings.
+For example:
+- touch page{1,2,3}.txt - will generate new files: page1.txt page2.txt and page3.txt
+You can use for exaple: {1,2,3}_{A,B,C}_file.txt - will create 9 files 
+!!! Can also specify ranges. {1...5} etc.
+!!! You can also nest: {1,2{A...Z}5}
 
 
 
