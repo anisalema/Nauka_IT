@@ -1,0 +1,80 @@
+                =====================
+                        Scrum
+                =====================
+
+
+Scrum Sprint - the run can not be longer than one month
+
+Scrum Guide:
+https://scrumguides.org/
+
+===============
+Scrum Artifacts
+===============
+
+Scrum Guide difines three artifacts:
+- Product backlog - exist to reach the protocol of long therm objective (Product Goal)
+- Sprint backlog - Sprint Goal (each sprint goal gets closer to finishing)
+- Increment (/product increment) - Definition od done - describes the wanted quality
+
+Commitment - dedication to achieving something specific
+- why is work inportant
+- what are the expectation
+
+1. Product Backlog 
+- users or customers use to get some benefit 
+- benefit is called value in scrumg
+- backlog is an accumulation of unfinished work ([ordered] to do list)
+        - list needs to be ordered so that the step by step is logical
+- backlog needs to be constantly improved - this is called REFINEMENT
+- adaptation, inspection and transparenct are important
+
+        Product Backlog Item (PBI)
+        - description
+        - order
+        - size 
+        - value 
+        - acceptance criteria
+
+Product Backlog Managment - Making changes to Product Backlog (made by the owner)
+How to create a product backlog: (it is constantly changing and never completed)
+        - the product owner needs to create an objective that the product should achieve
+        - will add new fetures and ideas 
+        - create a protocol 
+        - ONLY ONE PRODUCT GOAL AT THE TIME
+        - product backlog refinement 
+                - larger items are broken dowin into small ones
+        - sizing / estimation by developers
+
+Defining the Product Goal and Product Backlog
+1. Create a Product Goal 
+2. Create a Product Backlog with ideas 
+
+Made by using User Stories 
+(but not every Product Backlog Item needs to be written as a User Story)
+- User Stories are short descriptions of a feature explained from the perspective of the
+person who desires the functionality usually a user of the product.
+- 3 step process of writing User Stories: (3 C's)
+1. Card - brief infomration in this form:
+        As a <some user>
+        I want <some objective>
+        So that <some outcome>.
+We need to identify: Who, What and Why.
+Acceptance Criteria.
+2. Conversation
+3. Confirmation 
+
+How should the first sprint start? Using JIRA Software.
+1. Create a Backlog
+2. Create items on the list
+!!! ANything that needs to be worked on on the product needs to be added to the backlog !!!
+3. Make sure the order is logical and right
+4. The owner can make Description and Acceptance Criteria
+Backlog should be visiable to the team (access granted), Ordered and Up to date
+
+
+
+
+
+
+

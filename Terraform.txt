@@ -130,8 +130,9 @@ terraform refresh - updates the state file. Modifies the state file
 terraform graph - renders dependencies between Resources
 - in DOT format, if run in software e.g. graphviz that generates graph
 
-
-
+===================================
+Mutable vs Immutable Infrastructure
+===================================
 
 
 
