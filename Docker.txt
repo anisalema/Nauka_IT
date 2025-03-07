@@ -1,0 +1,213 @@
+==============
+Docker - Notes
+==============
+
+Docker helps with compatibility issues. It allows us to modify or change componenets without 
+affecting the other components and even modify the underlying operating systems as required.
+
+Docker allows ti run each component in separate container with its own dependencies and its
+own libraries.
+
+Containers are completely isolated environments. As in they can have their own processes or 
+services their own network interfaces their own mounts just like virtual machines except they 
+all share the same OS kernel (The OS kernel is responsible for interacting with the underlying 
+hardware while the OS kernel remains the same which is Linux).
+
+Docker utilizes LXC containers setting up these container environments is hard as they are very
+low level and that is where Docker offers a high level tool with several powerful 
+functionalities making it really easy for end users like us to understand how Docker works.
+
+Containers are running instances of images that are isolated.
+
+!!!
+Containers are not meant to host an operating system. Containers are meant to run a specific 
+task or process such as to host an instance of a web server or application server or a database
+or simply to carry some kind of computation or analysis task.
+!!!
+
+https://docs.docker.com/engine/install/ubuntu/
+Installation
+
+================================================================================================================
+
+===============
+Docker Commands
+===============
+
+docker version - shows version
+
+docker run <name> - used to run a container from an image running the docker; it can pull and run image 
+    docker run <name> sleep <duration - number format> (e.g. docker run ubunty sleep 5)
+        - container runs for a duration and then exits
+    docker run -d <name> - runs a container in detached mode (in the background)
+        docker attach <id of container (nan be onlu first 5 digits>)
+    docker run <name> bash - creates a bash language console????
+    docker run --name <name_wanted> <name>
+    docker run <name>:<version>
+    docker run -i <name> - interactive prompt allows to put input 
+        docker run -it <name> - interactive mode and see code
+    docker run <name> cat /etc/*release* - shows infomration on container like version
+    docker run -e <variable>=<value> <name> - runs a image with a variable value
+        e.g. docker run -e APP_COLOR=blue <name>
+        in inspect under config section list of variables
+
+    
+    
+Every container has an assigned internal IP address that you can access (in docker inspect)
+It would look like this: http://<number>:<port number>
+In order for people not only on your local host to access you have to map a port:
+    docker run -p 80:5000 <name>
+    - it changes from port 5000 to port 80 
+This way you can run multiple instances of your app and map them to different ports on the docker host
+
+docker run -v <directory:default>:<directory_new> <name> - stores your data in external
+    - it allows you to not have to do all the data from start; kinda backup
+
+docker inspect <name> - return all information on container
+
+docker logs <name> - shows logs of a container
+
+docker ps - lists all running coniteiners
+docker ps -a - all running and stoped etc container
+
+docker images - list of images
+
+docker stop <name> - stop a container 
+
+docker rm <name or number of container>- removes a container permanently
+    you can add only 3 numbers of container
+
+docker rmi - removes the image
+    !!! MAKE SURE NO CONTAINERS ARE RUNNING THIS IMAGE !!!
+    Delete all dependent container to remove image
+
+docker pull - download an image (but not run it)
+
+docker exec <name of a container> <command> - executes a command on a running container
+
+docker history 
+
+exit - exits container 
+clear - clears screen 
+
+================================================================================================================
+
+=============
+Docker Images
+=============
+
+Why create your own image?
+- co not have an image you need on docker
+- team decides to make your own 
+
+How to create your own image? (Example)
+1. Start with operating system - e.g. ubuntu
+2. Update the source repositories using apt repo command 
+3. Install dependancies using apt command 
+4. Install Python dependancies using pip command
+5. Copy cource code of my application to a location like opt folder
+6. Run the web server using the flask command
+-->Dockerfile in instrution and arguments format (everything in brackets in code below is an explanation)
+    --> Dockerfile 
+    FROM Ubuntu (<-- defines Operating System)
+
+    RUN apt-get update && apt-get -y install python (<-- install and updates dependencies)
+    RUN pip install flask flask-mysql (<-- install dependencies)
+    COPY . /opt/source-code (<-- copy source code)
+    ENTRYPOINT FLASK_APP=/opt/source-code/app.pl flask run (<-- specify Entrypoint - specify a command which
+                                                            will be run when the image is run as a container)
+
+docker build . -f Dockerfile -t <name> - it will create an image locally (-t -> tags/names image)
+
+docker push <name> - pushes image to docker account/makes it public (needs to be taged with username/<name>)
+
+=== Running image on container with variable ===
+   docker run -p 38282:8080 --name blue-app -e APP_COLOR=blue -d kodekloud/simple-webapp
+        -p 38282:8080 maps port 8080 of the container to port 38282 on your host.
+        --name blue-app names the container blue-app.
+        -e APP_COLOR=blue sets the environment variable APP_COLOR to blue.
+        -d runs the container in detached mode.
+
+=== Command vs Entrypoint ===
+
+cmd - command 
+
+Command vs Entrypoint - the main difference is that entrypoint allows us to run a command with a value that we
+specify while running program and command already has a specified command so we have to either write a new one
+or create a seperate instance
+    e.g: we want to run a container for 10 sec 
+        ENTRYPOINT ["sleep"] -> docker run <name> 10 
+            - runs for 10 sec
+        CMD sleep 5 -> docker run <name> sleep 10
+            - have to override command because the number is different 
+        We can also make it so that DEFAULT is <value> but we can change it while running by overriding it
+            ENTRYPOINT ["sleep"]
+            CMD 5
+            docker run <name> 10
+
+================================================================================================================
+
+==============
+Docker Compose - Complicated
+==============
+
+If we need an application with many containers it is better to run a Compose to create a configuration file in
+yaml format, so instead of running sql ansible ubuntu ...and many more... you just run:
+docker-compose.yml
+    redis:
+        image: redis
+    db:
+        image postgres:9.4
+    vote:
+        image: voting-app
+        ports:
+            - 5000:80
+        links:
+            -  redis 
+    result:
+        image: result-app
+        ports:
+            - 5001:80
+        links:
+            - db
+    worker:
+        image: worker
+        links:
+            - redis
+            - db
+
+!! if we would like to instruct Docker compose to run a docker build instead of pulling an image: !!
+example: instead of having:
+    vote:
+        image: voting-app
+you would have:
+    vote:
+        build: ./vote
+
+docker-compose up - bring up the entire application 
+
+basic but not used normally (instead YAML file):
+docker run --links - links two containers together 
+    EXAMPLE:
+APP: 
+    -> web voting app build in python that allows to vote cat vs dogs
+    -> stores answer in redis 
+    -> worker code in .NET makes changes to /updates database in postgres
+    -> postgres stores all answers
+    -> result-app shows results 
+docker run -d --name=redis redis
+docker run -d --name=db postgres
+docker run -d --name=vote -p 5000:80 --link redis:redis voting-app
+docker run -d --name=result -p 5001:80 --link db:db result-app
+docker run -d --name=worker --link db:db --link redis:redis worker 
+
+=== docker compose versions ===
+you specify the version at the top of docker-compose.yml file
+e.g. version: 2
+
+we can add variable:
+    depends_on:
+        -redis 
+    networks:
+        - frond-end
+        - back-end 
