@@ -211,3 +211,49 @@ we can add variable:
     networks:
         - frond-end
         - back-end 
+
+Docker compose does not get install by default. It needs to be installed separately 
+
+https://docs.docker.com/compose/install/
+
+After downolading remeber to apply executable permission to the binary
+
+----Demo docker compose voting example 
+1. Creating docker-compose yaml file:
+cat > docker-compose.yml 
+redis:
+    image: redis
+
+db:
+    image: postgres:9.4
+
+vote:
+    image: voting-app
+    ports:
+        - 5000:80
+    links:
+        - redis
+
+worker:
+    image: worker-app
+    links:
+        - redis
+        - db
+
+result:
+    image: result-app
+    ports:
+        - 5001:80
+    links:
+        - postgres
+        - db
+
+2. Run docker-compose up 
+
+---- Improving Docker Compose
+
+
+
+
+
+
