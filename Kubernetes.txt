@@ -1,0 +1,1 @@
+JSON PATH in Kubernetes in JSON-YAML notes file 

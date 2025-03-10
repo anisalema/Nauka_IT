@@ -70,3 +70,184 @@ List of Dictionaries
 ====
 
 nano <name> to edit what is inside a file (in bash)
+
+==================================
+    Introduction to JSON (path)
+==================================
+
+www.json2yaml.com - converter
+
+JSON PATH - data -> query -> result 
+
+dot notation used to extract information from JSON data
+
+====
+Dictionaries
+====
+Anything in between { } is a dictionatry in JSON
+
+Queries of dictionatries after root have dot. So $.
+
+JSON document looks like this:
+{
+    "car": {
+        "color": "blue",
+        "price": "$20,000"
+    },
+    "bus": {
+        "color": "red",
+        "price": "$250,000"
+    }
+}
+
+Root element in dictionatry is when a dictionatry does not have a name
+You start query with $
+e.g.:   $.car
+        $.car.price
+
+====
+Lists
+====
+[] - lists start with this 
+
+[
+    "car",
+    "bus",
+    "truck",
+    "bike"
+]
+
+Query to get a result, e.g.: $[0] to get car or $[3] to get bike or $[0,3]
+Lists start from 0 like in C# etc.
+
+$[0:3] - items from 1st to 4rd !!!but not including the 4rd element itself!!!
+
+$[0:8:2] - skip each 2nd item 
+
+$[-1] - last item 
+Items are numbered also from the last one (starting from -1)
+To get last 3 elements => $[-3:]
+Like this:
+[
+0    "car",     -4
+1    "bus",     -3
+2    "truck",   -2
+3    "bike"     -1
+]
+
+====
+Dictionaries and Lists
+====
+
+{
+    "car": {
+        "color": "blue",
+        "price": "$20,000"
+        "wheels": [
+            {
+                "model": "XYZ12345",
+                "location" "front-right"
+            },
+            {
+                "model": "XYZ54321",
+                "location" "rear-right"
+            },
+            {
+                "model": "12345XYZ",
+                "location" "front-left"
+            },
+            {
+                "model": "54321XYZ",
+                "location" "rear-ledt"
+            }
+        ]
+    }
+}
+
+Query example: To get a model of rear-right wheel
+    $.car.wheels[1].model
+
+====
+Criteria
+====
+
+chech if => ? ()
+
+each item in the list => @
+
+== => equals
+
+!= => does not equal 
+
+@ in [40,43,45] => returns these numbers 
+
+@ nin [40,43,45] => returns numbers that are not in the []
+
+example: check ig each item in the array > 40
+$[?(@>40)]
+
+example to the dictionatry with list about wheels above:
+Get a model of the rear-right wheel
+$.car.wheels[?(@.location=="rear-right")].model 
+- it makes it so that no matter the order of the wheels we will get the info on the ones we want
+
+====
+Wildcard
+====
+
+Wildcard is a * => it means any property / all
+
+[*] - all items in the list 
+
+====
+JSON PATH in Kubernetes
+====
+
+How to JSON PATH in KubeCtl?
+1. Idenify the KubeCtl command 
+kubectl get nodes -o json
+kubectl get pod -o json
+2. Familiarize with JSON output
+ -o json => prints format in JSON format
+3. Form the JSON PATH query
+- $ is not mandatory - KubeCtl adds it manually
+4. Use the JSON PATH query with kubectl command
+kubectl get pods -o=jsonpath='{query}'
+- you can write many queries at the same time:
+kubectl get pods -o=jsonpath='{query}{query}'
+- if you add {"\n"} - new line and {"\t"} - tab
+kubectl get pods -o=jsonpath='{query}{"\n"}{query}'
+
+    ====
+    Loops - Range
+    ====
+
+for each => {range.items [*]}
+end loop => {end}
+Example:
+'{range.items [*]}
+
+    {query}{"\t"}{query}{"\n"}
+
+{end}'
+=> merge it into single line
+'{range.items [*]}{query}{"\t"}{query}{"\n"}{end}'
+=> add the kubectl
+kubectl get nodes -o=jsonpath='{range.items [*]}{query}{"\t"}{query}{"\n"}{end}'
+
+    ====
+    Custom Columns
+    ====
+
+kubectl get nodes -o=custom-columns=<COLUMN NAME>:<JSON PATH>
+example: column name is name and json path coresponding to column name is .pet.name
+    kubectl get nodes -o=custom-columns=NAME:.pet.name
+
+if we want to print more columns then (adding column AGE)
+    kubectl get nodes -o=custom-columns=NAME:.pet.owner.name ,AGE:.pet.owner.age
+
+    ====
+    JSON PATH for SORTING
+    ====
+
+kubectl get nodes --sort-by=query
